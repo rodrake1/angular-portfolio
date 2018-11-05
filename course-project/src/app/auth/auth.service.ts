@@ -1,60 +1,94 @@
-import * as firebase from 'firebase';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+// import { Injectable } from '@angular/core';
+// import { Router } from '@angular/router';
 
-@Injectable()
-export class AuthService {
-  token: string;
+// import { Store } from '@ngrx/store';
+// import { AppState } from '../store/app.reducers';
+// import { Signup, Signin, SetToken, Logout } from './store/auth.actions';
 
-  constructor(private router: Router) {}
+// import { auth } from 'firebase';
 
-  signupUser(email: string, password: string) {
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(
-      error => console.log(error)
-    );
-  }
+// @Injectable()
+// export class AuthService {
+//   token: string;
 
-  signinUser(email: string, password: string) {
-    firebase.auth().signInWithEmailAndPassword(email, password).then(
-      response => {
-        this.router.navigate(['/']);
-        firebase.auth().currentUser.getIdToken().then(
-          (token: string) => this.token = token
-        );
-      }
-    ).catch(
-      error => console.log(error)
-    );
-  }
+//   constructor(
+//     private router: Router,
+//     private store: Store<AppState>
+//   ) { }
 
-  getToken() {
-    firebase.auth().currentUser.getIdToken().then(
-      (token: string) => this.token = token
-    );
-    return this.token;
-  }
+//   signupUser(email: string, password: string) {
+//     auth().createUserWithEmailAndPassword(email, password)
+//       .then(
+//         () => {
+//           auth().signInWithEmailAndPassword(email, password).then(
+//             () => {
+//               this.store.dispatch(new Signin());
+//               this.router.navigate(['/']);
+//               auth().currentUser.getIdToken().then(
+//                 (token: string) => {
+//                   // this.token = token;
+//                   this.store.dispatch(new SetToken(token));
+//                 }
+//               );
+//             }
+//           ).catch(
+//             error => console.log(error)
+//           );
+//           this.store.dispatch(new Signup());
+//         }
+//       )
+//       .catch(
+//         error => console.log(error)
+//       );
+//   }
 
-  isAuthenticated() {
-    return this.token != null;
-  }
+//   signinUser(email: string, password: string) {
+//     auth().signInWithEmailAndPassword(email, password).then(
+//       () => {
+//         this.store.dispatch(new Signin());
+//         this.router.navigate(['/']);
+//         auth().currentUser.getIdToken().then(
+//           (token: string) => {
+//             // this.token = token;
+//             this.store.dispatch(new SetToken(token));
+//           }
+//         );
+//       }
+//     ).catch(
+//       error => console.log(error)
+//     );
+//   }
 
-  singoutUser() {
-    firebase.auth().signOut();
-    this.token = null;
-    this.router.navigate(['/']);
-  }
+//   singoutUser() {
+//     // this.token = null;
+//     auth().signOut();
+//     this.store.dispatch(new Logout());
+//     this.router.navigate(['/']);
+//   }
 
-  loadUser() {
-    firebase.auth().onAuthStateChanged(
-      (currentUser) => {
-        if (currentUser === null) {
-          this.token = null;
-        } else {
-          currentUser.getIdToken().then(
-            (token: string) => this.token = token
-          );
-        }
-      }
-    );
-  }
-}
+//   loadUser() {
+//     auth().onAuthStateChanged(
+//       (currentUser) => {
+//         if (currentUser === null) {
+//           this.token = null;
+//         } else {
+//           currentUser.getIdToken().then(
+//             (token: string) => this.token = token
+//           );
+//         }
+//       }
+//     );
+
+//   getToken() {
+//     auth().currentUser.getIdToken().then(
+//       (token: string) => {
+//         this.token = token;
+//       }
+//     );
+//     return this.token;
+//   }
+
+//   isAuthenticated() {
+//     return this.token != null;
+//   }
+// }

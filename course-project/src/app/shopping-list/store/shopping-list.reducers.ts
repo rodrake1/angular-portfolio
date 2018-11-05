@@ -1,18 +1,22 @@
-import * as ShoppingListActions from './shopping-list.actions';
+import {
+  ShoppingListActions,
+  ADD_INGREDIENT,
+  ADD_INGREDIENTS,
+  START_EDIT,
+  STOP_EDIT,
+  UPDATE_INGREDIENT,
+  DELETE_INGREDIENT
+} from "./shopping-list.actions";
 
 import { Ingredient } from "src/app/shared/ingredient.model";
 
-export interface AppState {
-  shoppingList: State
-}
-
-export interface State {
+export interface ShoppingListState {
   ingredients: Ingredient[],
   editedIngredient: Ingredient,
   editedIngredientIndex: number
 }
 
-const initialState: State = {
+const initialState: ShoppingListState = {
   ingredients: [
     new Ingredient('Apple', 5),
     new Ingredient('Tomato', 10),
@@ -21,31 +25,31 @@ const initialState: State = {
   editedIngredientIndex: -1
 }
 
-export function shoppingListReducer(state = initialState, action: ShoppingListActions.ShoppingListActions) {
+export function shoppingListReducer(state = initialState, action: ShoppingListActions) {
   switch (action.type) {
-    case ShoppingListActions.ADD_INGREDIENT:
+    case ADD_INGREDIENT:
       return {
         ...state,
         ingredients: [...state.ingredients, action.payload]
       }
-    case ShoppingListActions.ADD_INGREDIENTS:
+    case ADD_INGREDIENTS:
       return {
         ...state,
         ingredients: [...state.ingredients, ...action.payload]
       }
-    case ShoppingListActions.START_EDIT:
+    case START_EDIT:
       return {
         ...state,
         editedIngredient: { ...state.ingredients[action.payload] },
         editedIngredientIndex: action.payload
       }
-    case ShoppingListActions.STOP_EDIT:
+    case STOP_EDIT:
       return {
         ...state,
         editedIngredient: null,
         editedIngredientIndex: -1
       }
-    case ShoppingListActions.UPDATE_INGREDIENT:
+    case UPDATE_INGREDIENT:
       const ingredient = state.ingredients[state.editedIngredientIndex];
       const updatedIngredient = {
         ...ingredient,
@@ -57,7 +61,7 @@ export function shoppingListReducer(state = initialState, action: ShoppingListAc
         ...state,
         ingredients: updatedIngredients
       }
-    case ShoppingListActions.DELETE_INGREDIENT:
+    case DELETE_INGREDIENT:
       const oldIngredients = [...state.ingredients];
       oldIngredients.splice(state.editedIngredientIndex, 1);
       return {

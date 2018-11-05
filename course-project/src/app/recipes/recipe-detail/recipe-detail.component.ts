@@ -8,7 +8,7 @@ import { Recipe } from '../recipe.model';
 import { RecipeService } from '../recipe.service';
 
 import { AddIngredients } from '../../shopping-list/store/shopping-list.actions';
-import { AppState } from 'src/app/shopping-list/store/shopping-list.reducers';
+import { AppState } from 'src/app/store/app.reducers';
 
 @Component({
   selector: 'app-recipe-detail',

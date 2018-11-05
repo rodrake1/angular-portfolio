@@ -8,8 +8,8 @@ import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from '../app-routing.module';
 import { RecipeService } from '../recipes/recipe.service';
 import { DataStorageService } from '../shared/data-storage.service';
-import { AuthService } from '../auth/auth.service';
 import { AuthInterceptor } from '../shared/auth.interceptor';
+// import { AuthService } from '../auth/auth.service';
 // import { LoginInterceptor } from '../shared/login.interceptor';
 
 @NgModule({
@@ -27,9 +27,9 @@ import { AuthInterceptor } from '../shared/auth.interceptor';
   ],
   providers: [
     // ShoppingListService,
+    // AuthService,
     RecipeService,
     DataStorageService,
-    AuthService,
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     // { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptor, multi: true }
   ]

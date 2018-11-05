@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 import { Ingredient } from '../../shared/ingredient.model';
 
 import { AddIngredient, UpdateIngredient, DeleteIngredient, StopEdit } from '../store/shopping-list.actions';
-import { AppState } from '../store/shopping-list.reducers';
+import { AppState } from 'src/app/store/app.reducers';
 
 @Component({
   selector: 'app-shopping-edit',
