@@ -5,10 +5,11 @@ import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
 // import { AuthService } from '../../auth/auth.service';
-import { DataStorageService } from '../../shared/data-storage.service';
+// import { DataStorageService } from '../../shared/data-storage.service';
 import { AuthState } from 'src/app/auth/store/auth.reducers';
 import { AppState } from 'src/app/store/app.reducers';
 import { Logout } from 'src/app/auth/store/auth.actions';
+import { FetchRecipes, StoreRecipes } from 'src/app/recipes/store/recipes.actions';
 
 @Component({
   selector: 'app-header',
@@ -20,7 +21,7 @@ export class HeaderComponent implements OnInit {
 
   constructor(
     // private authService: AuthService,
-    private dataStorageService: DataStorageService,
+    // private dataStorageService: DataStorageService,
     private store: Store<AppState>
   ) { }
 
@@ -29,15 +30,17 @@ export class HeaderComponent implements OnInit {
   }
 
   onSaveData() {
-    this.dataStorageService.storeRecipes().subscribe(
-      (response) => {
-        console.log(response);
-      }
-    );
+    this.store.dispatch(new StoreRecipes());
+    // this.dataStorageService.storeRecipes().subscribe(
+    //   (response) => {
+    //     console.log(response);
+    //   }
+    // );
   }
 
   onFetchData() {
-    this.dataStorageService.fecthRecipes();
+    // this.dataStorageService.fecthRecipes();
+    this.store.dispatch(new FetchRecipes());
   }
   
   onLogout() {
