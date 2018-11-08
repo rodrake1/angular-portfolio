@@ -1,18 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-
 import { auth } from 'firebase';
-
 import { Effect, Actions } from '@ngrx/effects';
-
 import { from } from 'rxjs';
 import { map, switchMap, mergeMap, tap } from 'rxjs/operators';
-
 import { TRY_SIGNUP, TrySignup, SIGNUP, SET_TOKEN, TRY_SIGNIN, TrySignin, SIGNIN, LOGOUT } from './auth.actions';
 
 @Injectable()
 export class AuthEffects {
-
   constructor(
     private actions$: Actions,  // The '$' is optional and signals that the 'action' property is an observable.
     private router: Router

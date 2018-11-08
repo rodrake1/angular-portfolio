@@ -1,12 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-
 import { Store } from '@ngrx/store';
-
 import { AppState } from 'src/app/store/app.reducers';
 import { TrySignin } from '../store/auth.actions';
-
-// import { AuthService } from '../auth.service';
 
 @Component({
   selector: 'app-signin',
@@ -14,11 +10,7 @@ import { TrySignin } from '../store/auth.actions';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
-
-  constructor(
-    // private authService: AuthService
-    private store: Store<AppState>,
-  ) { }
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit() {
   }
@@ -27,7 +19,6 @@ export class SigninComponent implements OnInit {
     const email = form.value.email;
     const password = form.value.password;
     this.store.dispatch(new TrySignin({ username: email, password: password }));
-    // this.authService.signinUser(email, password);
   }
 
 }

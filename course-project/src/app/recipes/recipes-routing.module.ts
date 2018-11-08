@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-
 import { RecipesComponent } from './recipes.component';
 import { RecipeDetailDefaultComponent } from './recipe-detail-default/recipe-detail-default.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';

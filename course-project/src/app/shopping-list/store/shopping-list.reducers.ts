@@ -1,13 +1,4 @@
-import {
-  ShoppingListActions,
-  ADD_INGREDIENT,
-  ADD_INGREDIENTS,
-  START_EDIT,
-  STOP_EDIT,
-  UPDATE_INGREDIENT,
-  DELETE_INGREDIENT
-} from "./shopping-list.actions";
-
+import { ShoppingListActions, ADD_INGREDIENT, ADD_INGREDIENTS, START_EDIT, STOP_EDIT, UPDATE_INGREDIENT, DELETE_INGREDIENT } from "./shopping-list.actions";
 import { Ingredient } from "src/app/shared/ingredient.model";
 
 export interface ShoppingListState {

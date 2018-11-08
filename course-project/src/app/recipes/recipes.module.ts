@@ -1,9 +1,7 @@
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { RecipeDetailDefaultComponent } from './recipe-detail-default/recipe-detail-default.component';
 import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
