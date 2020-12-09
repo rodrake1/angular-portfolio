@@ -1,0 +1,26 @@
+<div class="carousel__container">
+  <button
+    mat-icon-button
+    class="carousel__arrow carousel__arrow--left"
+    (click)="previousSlide()"
+  >
+    <mat-icon>chevron_left</mat-icon>
+  </button>
+  <img class="carousel__image" [src]="slides[index].image" (click)="handleClick()" />
+  <button
+    mat-icon-button
+    class="carousel__arrow carousel__arrow--right"
+    (click)="nextSlide()"
+  >
+    <mat-icon>chevron_right</mat-icon>
+  </button>
+  <div class="carousel__bullets">
+    <button
+      mat-icon-button
+      class="carousel__bullet"
+      *ngFor="let slide of slides; index as i"
+      [ngClass]="{ 'carousel__bullet--active': i === index }"
+      (click)="goToSlide(i)"
+    ></button>
+  </div>
+</div>
