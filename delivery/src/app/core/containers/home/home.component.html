@@ -1,9 +1,18 @@
 <header>
   <app-header></app-header>
 </header>
+
 <main class="main">
-  <section>
+  <section class="section">
     <h2>Promotions</h2>
-    <app-carousel [slides]="slides" (onClick)="addToCart($event)"></app-carousel>
+    <app-carousel
+      [slides]="slides"
+      (onClick)="addToCart($event)"
+    ></app-carousel>
+  </section>
+
+  <section class="section">
+    <h2>Meals</h2>
+      <app-card-grid [products]="meals" (onClick)="addToCart($event)"></app-card-grid>
   </section>
 </main>

@@ -1,0 +1,13 @@
+<mat-card class="card">
+  <mat-card-title>{{ name }}</mat-card-title>
+
+  <div class="card__content">
+    <mat-card-content class="card__info">
+      <span class="card__description">{{ description }}</span>
+
+      <h3 class="card__price">$ {{ price }}</h3>
+    </mat-card-content>
+
+    <img class="card__image" [src]="image" />
+  </div>
+</mat-card>

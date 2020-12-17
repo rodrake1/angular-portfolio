@@ -1,0 +1,7 @@
+<div class="card-grid">
+  <app-card
+    [product]="product"
+    (click)="handleClick(i)"
+    *ngFor="let product of products; index as i"
+  ></app-card>
+</div>

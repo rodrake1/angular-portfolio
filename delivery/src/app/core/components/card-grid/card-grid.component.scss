@@ -1,0 +1,5 @@
+.card-grid {
+  display: grid;
+  grid: repeat(3, 200px) / repeat(3, 350px);
+  gap: 30px 30px;
+}

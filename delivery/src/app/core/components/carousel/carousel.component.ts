@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Slide } from 'src/app/models/slide';
+import { Product } from '../../../models/product';
+import { Slide } from '../../../models/slide';
 
 @Component({
   selector: 'app-carousel',
@@ -11,14 +12,14 @@ export class CarouselComponent implements OnInit {
 
   @Input() slides: Slide[];
 
-  @Output() onClick = new EventEmitter();
+  @Output() onClick = new EventEmitter<Product>();
 
   constructor() {}
 
   ngOnInit(): void {}
 
   handleClick() {
-    this.onClick.emit(this.slides[this.index].products);
+    this.onClick.emit(this.slides[this.index].product);
   }
 
   previousSlide() {
