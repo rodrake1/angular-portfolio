@@ -5,7 +5,7 @@
     <mat-card-content class="card__info">
       <span class="card__description">{{ description }}</span>
 
-      <h3 class="card__price">$ {{ price }}</h3>
+      <h3 class="card__price">{{ price | currency }}</h3>
     </mat-card-content>
 
     <img class="card__image" [src]="image" />

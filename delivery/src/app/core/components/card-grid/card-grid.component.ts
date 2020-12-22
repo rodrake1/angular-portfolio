@@ -1,3 +1,4 @@
+import { KeyValue } from '@angular/common';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Product } from '../../../models/product';
 
@@ -7,7 +8,7 @@ import { Product } from '../../../models/product';
   styleUrls: ['./card-grid.component.scss']
 })
 export class CardGridComponent implements OnInit {
-  @Input() products: Product[];
+  @Input() products: KeyValue<string, Product>;
 
   @Output() onClick = new EventEmitter<Product>();
 
@@ -15,8 +16,8 @@ export class CardGridComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  handleClick(index: number) {
-    this.onClick.emit(this.products[index]);
+  handleClick(name: string) {
+    this.onClick.emit(this.products[name]);
   }
 
 }
