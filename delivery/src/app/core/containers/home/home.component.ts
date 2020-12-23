@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../../models/product';
 import { Slide } from '../../../models/slide';
-import { Menu, MenuItems } from '../../../../assets/menu/menu';
+import { menu, SubMenu } from '../../../../assets/menu/menu';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +10,11 @@ import { Menu, MenuItems } from '../../../../assets/menu/menu';
 })
 export class HomeComponent implements OnInit {
   slides: Slide[];
-  meals: MenuItems;
-  sandwiches: MenuItems;
-  sides: MenuItems;
-  beverages: MenuItems;
-  desserts: MenuItems;
+  meals: SubMenu;
+  sandwiches: SubMenu;
+  sides: SubMenu;
+  beverages: SubMenu;
+  desserts: SubMenu;
 
   constructor() {}
 
@@ -22,19 +22,19 @@ export class HomeComponent implements OnInit {
     this.slides = [
       {
         image: 'assets/images/big-mac_slide.png',
-        product: Menu.sandwiches.bigMac
+        product: menu.sandwiches.bigMac
       },
       {
         image: 'assets/images/mcshake_slide.jpg',
-        product: Menu.desserts.mcshake,
+        product: menu.desserts.mcShake,
       },
     ];
 
-    this.meals = Menu.meals;
-    this.sandwiches = Menu.sandwiches;
-    this.sides = Menu.sides;
-    this.beverages = Menu.beverages;
-    this.desserts = Menu.desserts;
+    this.meals = menu.meals;
+    this.sandwiches = menu.sandwiches;
+    this.sides = menu.sides;
+    this.beverages = menu.beverages;
+    this.desserts = menu.desserts;
   }
 
   addToCart(products: Product[]) {
