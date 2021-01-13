@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Product } from '../../../models/product';
-import { Slide } from '../../../models/slide';
+import { Product, Slide } from '../../../models';
 
 @Component({
   selector: 'app-carousel',

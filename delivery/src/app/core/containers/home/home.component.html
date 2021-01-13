@@ -11,6 +11,11 @@
     ></app-carousel>
   </section>
 
+  <section class="section" *ngFor="let subMenu of menu | keyvalue">
+    <h2>{{ subMenu.name }}</h2>
+      <app-card-grid [products]="subMenu.products" (onClick)="addToCart($event)"></app-card-grid>
+  </section>
+
   <section class="section">
     <h2>Meals</h2>
       <app-card-grid [products]="meals" (onClick)="addToCart($event)"></app-card-grid>

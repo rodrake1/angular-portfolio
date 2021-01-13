@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Product } from '../../../models/product';
-import { Slide } from '../../../models/slide';
-import { menu, SubMenu } from '../../../../assets/menu/menu';
+import { Product, Slide, SubMenu } from '../../../models';
+import { menu } from '../../../../assets/menu/menu';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -10,11 +10,7 @@ import { menu, SubMenu } from '../../../../assets/menu/menu';
 })
 export class HomeComponent implements OnInit {
   slides: Slide[];
-  meals: SubMenu;
-  sandwiches: SubMenu;
-  sides: SubMenu;
-  beverages: SubMenu;
-  desserts: SubMenu;
+  menu: KeyValue<string, SubMenu>;
 
   constructor() {}
 
@@ -22,19 +18,36 @@ export class HomeComponent implements OnInit {
     this.slides = [
       {
         image: 'assets/images/big-mac_slide.png',
-        product: menu.sandwiches.bigMac
+        product: menu.sandwiches.products.bigMac,
       },
       {
         image: 'assets/images/mcshake_slide.jpg',
-        product: menu.desserts.mcShake,
+        product: menu.desserts.products.mcShake,
       },
     ];
 
-    this.meals = menu.meals;
-    this.sandwiches = menu.sandwiches;
-    this.sides = menu.sides;
-    this.beverages = menu.beverages;
-    this.desserts = menu.desserts;
+    this.menu = menu;
+    console.log(this.menu);
+  }
+
+  get meals() {
+    return menu.meals.products;
+  }
+
+  get sandwiches() {
+    return menu.sandwiches.products;
+  }
+
+  get sides() {
+    return menu.sides.products;
+  }
+
+  get beverages() {
+    return menu.beverages.products;
+  }
+
+  get desserts() {
+    return menu.desserts.products;
   }
 
   addToCart(products: Product[]) {

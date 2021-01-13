@@ -1,5 +1,4 @@
-import { Product } from "src/app/models/product";
-import { SubMenu } from "./menu";
+import { Product, SubMenu } from '../../app/models';
 
 export const frenchFries: Product = {
   name: 'French Fries',
@@ -18,6 +17,6 @@ export const chickenMcNuggets: Product = {
 };
 
 export const sides: SubMenu = {
-  frenchFries,
-  chickenMcNuggets
+  name: 'Sides',
+  products: { frenchFries, chickenMcNuggets },
 };

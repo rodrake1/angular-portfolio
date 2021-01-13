@@ -1,5 +1,4 @@
-import { Product } from 'src/app/models/product';
-import { SubMenu } from './menu';
+import { Product, SubMenu } from '../../app/models';
 
 export const cocaCola: Product = {
   name: 'Coca-Cola',
@@ -26,7 +25,6 @@ export const fanta: Product = {
 };
 
 export const beverages: SubMenu = {
-  cocaCola,
-  sprite,
-  fanta,
+  name: 'Beverages',
+  products: { cocaCola, sprite, fanta },
 };

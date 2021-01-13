@@ -1,4 +1,4 @@
-import { SubMenu, SubMenuNames } from 'src/assets/menu/menu';
+import { SubMenu } from "../models";
 
 export interface Product {
   name: string;
@@ -6,15 +6,5 @@ export interface Product {
   image: string;
   price: number;
   discount?: number;
+  options?: SubMenu[];
 }
-
-export interface ProductCombo extends Product {
-  options?: ProductOptions[];
-}
-
-export type ProductOptions = {
-  [subMenu in SubMenuNames]?: SubMenu;
-} & {
-  required: boolean;
-  quantity: number;
-};
