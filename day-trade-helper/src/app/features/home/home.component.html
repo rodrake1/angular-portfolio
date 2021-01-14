@@ -1,0 +1,98 @@
+<div class="main">
+  <h1>Day Trade Helper</h1>
+
+  <div class="opcoes">
+    <mat-vertical-stepper [linear]="false" #stepper>
+      <mat-step>
+        <ng-template matStepLabel
+          >Preencha a estratégia e seu patrimônio</ng-template
+        >
+
+        <div class="opcoes__estrategia">
+          <mat-form-field appearance="fill">
+            <mat-label>Estratégia</mat-label>
+            <mat-select [(ngModel)]="estrategia">
+              <mat-option [value]="0">Chá do dia</mat-option>
+              <mat-option [value]="1">Receita de bolo</mat-option>
+              <mat-option [value]="2">Mini dólar</mat-option>
+              <mat-option [value]="3">Sniper</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Patrimônio</mat-label>
+            <input matInput type="number" [(ngModel)]="patrimonio" />
+          </mat-form-field>
+        </div>
+
+        <button mat-flat-button matStepperNext color="primary">Avançar</button>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel
+          >Preencha os dados do candle de referência</ng-template
+        >
+
+        <div class="opcoes__candle">
+          <mat-form-field appearance="fill">
+            <mat-label>Mínima</mat-label>
+            <input matInput type="number" [(ngModel)]="minima" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill">
+            <mat-label>Máxima</mat-label>
+            <input matInput type="number" [(ngModel)]="maxima" />
+          </mat-form-field>
+        </div>
+
+        <button mat-flat-button matStepperNext color="primary">Avançar</button>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Selecione a entrada</ng-template>
+
+        <div class="opcoes__entrada">
+          <mat-form-field appearance="fill">
+            <mat-label>Contratos</mat-label>
+            <input matInput type="number" [(ngModel)]="entrada.contratos" />
+          </mat-form-field>
+
+          <mat-radio-group
+            class="opcoes__tipo-entrada"
+            color="primary"
+            [(ngModel)]="entrada.operacao"
+          >
+            <mat-radio-button value="compra">Compra: 120.400</mat-radio-button>
+
+            <mat-radio-button value="venda">Venda: 120.000</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <button mat-flat-button matStepperNext color="primary">Avançar</button>
+      </mat-step>
+
+      <mat-step>
+        <ng-template matStepLabel>Selecione o fechamento da entrada</ng-template>
+
+        <div class="opcoes__entrada">
+          <mat-form-field appearance="fill">
+            <mat-label>Contratos</mat-label>
+            <input matInput type="number" [(ngModel)]="entrada.contratos" readonly />
+          </mat-form-field>
+
+          <mat-radio-group
+            class="opcoes__tipo-entrada"
+            color="primary"
+            [(ngModel)]="entrada.operacao"
+          >
+            <mat-radio-button value="compra">Compra: 120.400</mat-radio-button>
+
+            <mat-radio-button value="venda">Venda: 120.000</mat-radio-button>
+          </mat-radio-group>
+        </div>
+
+        <button mat-flat-button matStepperNext color="primary">Avançar</button>
+      </mat-step>
+    </mat-vertical-stepper>
+  </div>
+</div>

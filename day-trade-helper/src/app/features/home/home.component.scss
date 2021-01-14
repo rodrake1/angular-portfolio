@@ -1,0 +1,32 @@
+.main {
+  margin: 0 auto;
+  padding: 50px 20px;
+  width: 1200px;
+}
+
+.opcoes {
+  display: inline-block;
+
+  &__estrategia {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__candle,
+  &__entrada {
+    display: flex;
+    gap: 10px;
+  }
+  
+  &__tipo-entrada {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 51.313px;
+  }
+}
+
+mat-form-field,
+mat-radio-group {
+  margin-top: 16px;
+}
