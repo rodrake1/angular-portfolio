@@ -26,7 +26,21 @@
   }
 }
 
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+button[matStepperPrevious] {
+  margin-right: 16px;
+}
+
 mat-form-field,
 mat-radio-group {
-  margin-top: 16px;
+  margin: 16px 0;
+}
+
+::ng-deep .mat-vertical-stepper-header{
+  pointer-events: none !important;
 }
