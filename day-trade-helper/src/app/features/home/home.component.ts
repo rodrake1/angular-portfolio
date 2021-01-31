@@ -1,27 +1,24 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormGroup,
-  ValidatorFn,
-  Validators,
-} from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatVerticalStepper } from '@angular/material/stepper';
+import * as Validadores from '../../utils/validadores/validadores';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit, AfterViewInit {
-  constructor(private fb: FormBuilder) {}
-
+export class HomeComponent implements OnInit {
   @ViewChild(MatVerticalStepper) stepper: MatVerticalStepper;
 
   step1: FormGroup;
   step2: FormGroup;
   step3: FormGroup;
   estrategias: string[];
+  reversao1: number;
+  reversao2: number;
+  stop: number;
+  usarSuboperacoes = false;
 
   entrada = {
     contratos: 0,
@@ -32,12 +29,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     stop: 0,
   };
 
-  reversao1: number;
-  reversao2: number;
-  stop: number;
-  usarSuboperacoes = false;
-
-  ngAfterViewInit() {}
+  constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
     this.estrategias = [
@@ -47,6 +39,10 @@ export class HomeComponent implements OnInit, AfterViewInit {
       'Sniper',
     ];
 
+    this.iniciarForm();
+  }
+
+  iniciarForm() {
     this.step1 = this.fb.group({
       estrategia: [this.estrategias[0]],
       patrimonio: [null, [Validators.required, Validators.min(2000)]],
@@ -54,38 +50,13 @@ export class HomeComponent implements OnInit, AfterViewInit {
 
     this.step2 = this.fb.group({
       minima: [null, Validators.required],
-      maxima: [null, [Validators.required, validadorCandle()]],
+      maxima: [null, [Validators.required, Validadores.validadorCandle]],
     });
 
     this.step3 = this.fb.group({
-      contratos: [this.entrada.contratos, Validators.required],
-      operacao: [this.entrada.operacao, [Validators.required]],
+      contratos: [this.entrada.contratos],
+      operacao: [this.entrada.operacao],
     });
-
-    function validadorCandle(): ValidatorFn {
-      return (control: AbstractControl) => {
-        if (!control || !control.parent) {
-          return null;
-        }
-
-        const minima = control.parent.get('minima')?.value;
-        const maxima = control.value;
-        const maximaMenorQueMinima = maxima <= minima;
-        const candleMenor = maxima - minima < 200;
-        const candleMaior = maxima - minima > 400;
-
-        switch (true) {
-          case maximaMenorQueMinima:
-            return { maximaMenorQueMinima };
-          case candleMenor:
-            return { candleMenor };
-          case candleMaior:
-            return { candleMaior };
-          default:
-            return null;
-        }
-      };
-    }
   }
 
   get patrimonio() {
@@ -100,12 +71,20 @@ export class HomeComponent implements OnInit, AfterViewInit {
     return this.step2.get('maxima');
   }
 
-  get entradaContratos() {
+  get contratosEntrada() {
     return this.step3.get('contratos');
   }
 
   validarMaxima() {
     this.maxima?.updateValueAndValidity();
+  }
+
+  validarMaxContratos() {
+    this.contratosEntrada?.setValidators([
+      Validators.required,
+      Validators.min(1),
+      Validadores.validadorEntrada(this.patrimonio?.value),
+    ]);
   }
 
   calcularEntrada() {
@@ -116,7 +95,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
     this.entrada.contratos = Math.floor(patrimonio / 2000);
     this.entrada.compra = maxima + 10;
     this.entrada.venda = minima - 10;
-    this.entradaContratos?.setValue(this.entrada.contratos);
+    this.contratosEntrada?.setValue(this.entrada.contratos);
   }
 
   novaOperacao() {

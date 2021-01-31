@@ -32,6 +32,7 @@
                 type="number"
                 placeholder="0"
                 formControlName="patrimonio"
+                (change)="validarMaxContratos()"
               />
 
               <mat-error
@@ -133,7 +134,22 @@
           <div class="opcoes__entrada">
             <mat-form-field>
               <mat-label>Contratos</mat-label>
+
               <input matInput type="number" formControlName="contratos" />
+
+              <mat-error *ngIf="contratosEntrada?.hasError('min')">
+                O número de contratos deve ser maior que <strong>0</strong>.
+              </mat-error>
+
+              <mat-error *ngIf="contratosEntrada?.hasError('required')">
+                O campo contratos é <strong>obrigatório</strong>.
+              </mat-error>
+
+              <mat-error *ngIf="contratosEntrada?.hasError('maxContratos')">
+                O numero máximos de contratos para seu patrimônio é
+                <strong>{{ contratosEntrada?.errors?.maxContratos }}</strong
+                >.
+              </mat-error>
             </mat-form-field>
 
             <mat-radio-group
